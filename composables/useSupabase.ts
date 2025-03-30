@@ -156,7 +156,7 @@ export const useSupabase = () => {
         .from(bucketName)
         .upload(filePath, file, {
           contentType: file.type,
-          cacheControl: '3600',
+          cacheControl: '31536000', // 1 tahun caching
           upsert: true
         });
       
@@ -165,6 +165,10 @@ export const useSupabase = () => {
       const { data } = client.storage
         .from(bucketName)
         .getPublicUrl(filePath);
+      
+      // // Buat thumbnail saat upload
+      // const thumbnailPath = `thumb_${filePath}`;
+      // // ...implementasi resize dan kompresi thumbnail
       
       return data.publicUrl;
     } catch (err) {

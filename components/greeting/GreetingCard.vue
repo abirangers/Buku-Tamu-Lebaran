@@ -33,15 +33,26 @@
         
         <div v-if="greeting.image" class="mt-4">
           <ClientOnly>
-            <NuxtImg
-              :src="greeting.image"
-              alt="Greeting"
-              class="rounded-md w-full max-h-64 h-auto object-cover border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow duration-200 cursor-pointer"
-              loading="lazy"
-              fetchpriority="low"
-              decoding="async"
-              @click="isImageModalOpen = true"
-            />
+            <div class="relative">
+              <!-- Placeholder/skeleton selama gambar dimuat -->
+              <div v-if="!imageLoaded" class="w-full h-56 bg-neutral-100 dark:bg-neutral-800 animate-pulse rounded-md flex items-center justify-center">
+                <UIcon name="i-heroicons-photo" class="h-10 w-10 text-neutral-300 dark:text-neutral-600" />
+              </div>
+              
+              <NuxtImg
+                :src="greeting.image"
+                alt="Greeting"
+                format="webp"
+                quality="80"
+                class="rounded-md w-full max-h-64 h-auto object-cover border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+                loading="lazy"
+                fetchpriority="low"
+                decoding="async"
+                @click="isImageModalOpen = true"
+                @load="imageLoaded = true"
+                :class="{'opacity-0 absolute inset-0': !imageLoaded, 'opacity-100': imageLoaded}"
+              />
+            </div>
           </ClientOnly>
         </div>
       </div>
@@ -90,6 +101,7 @@ defineProps<{
 
 // State
 const isImageModalOpen = ref(false);
+const imageLoaded = ref(false);
 
 // Gunakan composable auth untuk cek status login
 const { isLoggedIn } = useAuth();
