@@ -44,7 +44,7 @@
                 alt="Greeting"
                 format="webp"
                 quality="80"
-                class="rounded-md w-full max-h-64 h-auto object-cover border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+                class="rounded-md object-cover border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow duration-200 cursor-pointer"
                 loading="lazy"
                 fetchpriority="low"
                 decoding="async"
