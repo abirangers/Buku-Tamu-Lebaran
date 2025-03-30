@@ -54,7 +54,7 @@
           <ClientOnly>
             <NuxtImg
               :src="greeting.image || ''"
-              alt="Greeting"
+              alt="Modal Greeting Image"
               class="max-h-[80vh] max-w-full object-contain rounded-md"
               loading="lazy"
               decoding="async"
