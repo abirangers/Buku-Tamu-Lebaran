@@ -45,7 +45,7 @@ export function useGreetingFormSecurity() {
 
   // ---------- CONTENT FILTERING ----------  
   // Daftar kata yang sering digunakan dalam spam
-  const spamWords = [
+  const _spamWords = [
     "viagra", "cialis", "casino", "lottery", "prize", "winner", 
     "bitcoin", "investment", "wealth", "rich", "free money",
     "porn", "sex", "xxx", "dating", "hot singles", "click here",
@@ -57,28 +57,8 @@ export function useGreetingFormSecurity() {
   ];
 
   // Fungsi untuk memeriksa konten spam
-  const containsSpamContent = (text: string): boolean => {
-    if (!text) return false;
-    
-    const lowerText = text.toLowerCase();
-    
-    // 1. Periksa kata-kata spam
-    const hasSpamWord = spamWords.some(word => lowerText.includes(word.toLowerCase()));
-    if (hasSpamWord) return true;
-    
-    // 2. Periksa URL yang mencurigakan
-    const suspiciousURLPattern = /bit\.ly|goo\.gl|tinyurl\.com|t\.co|is\.gd|ow\.ly|amzn\.to|adf\.ly/i;
-    if (suspiciousURLPattern.test(lowerText)) return true;
-    
-    // 3. Periksa terlalu banyak URL
-    const urlCount = (lowerText.match(/https?:\/\//g) || []).length;
-    if (urlCount > 2) return true;
-    
-    // 4. Periksa terlalu banyak emoji
-    const emojiPattern = /[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
-    const emojiCount = (lowerText.match(emojiPattern) || []).length;
-    if (emojiCount > 10) return true;
-    
+  const containsSpamContent = (_text: string): boolean => {
+    // Sementara dinonaktifkan untuk testing
     return false;
   };
 

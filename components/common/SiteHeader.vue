@@ -24,7 +24,7 @@
               name="i-heroicons-book-open" 
               class="h-6 w-6 mr-2" 
             />
-            <span>Buku Tamu Lebaran</span>
+            <span>Ucapin Lebaran</span>
           </NuxtLink>
         </div>
 

@@ -293,15 +293,17 @@ const submitForm = async () => {
       imageUrl = await uploadImage(imageFile.value);
       if (!imageUrl) {
         toast.add({
-          title: "Peringatan",
-          description: "Gagal mengunggah gambar, tapi ucapan tetap akan disimpan",
-          icon: "i-heroicons-exclamation-triangle",
-          color: "warning",
+          title: "Gagal mengunggah gambar",
+          description: "Proses pengiriman ucapan dibatalkan karena gagal mengunggah gambar. Silakan coba lagi.",
+          icon: "i-heroicons-exclamation-circle",
+          color: "error",
         });
+        isSubmitting.value = false;
+        return; // Hentikan proses jika upload gambar gagal
       }
     }
 
-    // 5. Tambahkan ucapan ke database Supabase
+    // 5. Tambahkan ucapan ke database hanya jika tidak ada masalah dengan upload gambar
     const { success, error } = await addGreeting({
       name: form.name,
       message: form.message,
@@ -315,6 +317,7 @@ const submitForm = async () => {
         icon: "i-heroicons-exclamation-circle",
         color: "error",
       });
+      console.log("Error saat menyimpan ucapan:", error);
       isSubmitting.value = false;
       return;
     }

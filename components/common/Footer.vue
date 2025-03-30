@@ -10,7 +10,7 @@
         <div class="text-center">
           <h3 class="text-xl font-bold text-neutral-900 dark:text-white inline-flex items-center">
             <UIcon name="i-heroicons-book-open" class="mr-2 h-5 w-5 text-primary-500" />
-            Buku Tamu Lebaran
+            Ucapin Lebaran
           </h3>
         </div>
         
@@ -24,7 +24,7 @@
         <!-- Copyright & Credits -->
         <div class="text-center">
           <p class="text-neutral-500 dark:text-neutral-400 text-sm mb-2">
-            &copy; {{ new Date().getFullYear() }} Buku Tamu Lebaran • 
+            &copy; {{ new Date().getFullYear() }} Ucapin Lebaran • 
             <span class="mx-1">Selamat Hari Raya Idul Fitri</span> •
             <span class="ml-1">Mohon Maaf Lahir dan Batin</span>
           </p>
