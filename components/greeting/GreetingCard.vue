@@ -1,9 +1,9 @@
 <template>
-  <UCard>
-    <div class="flex items-start gap-4">
+  <UCard class="greeting-card p-4 md:p-5">
+    <div class="flex items-start gap-3 md:gap-4">
       <UAvatar 
         :text="getInitials(greeting.name)" 
-        class="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-200" 
+        class="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-200 shrink-0" 
         size="md"
       />
       
@@ -22,7 +22,7 @@
             color="error"
             variant="ghost"
             size="xl"
-            class="opacity-50 hover:opacity-100 cursor-pointer"
+            class="opacity-50 hover:opacity-100 cursor-pointer -mr-2"
             @click="$emit('delete', greeting.id)"
           />
         </div>
@@ -36,7 +36,7 @@
             <NuxtImg
               :src="greeting.image"
               alt="Greeting"
-              class="rounded-md max-h-64 w-auto object-cover border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow duration-200 cursor-pointer"
+              class="rounded-md w-full max-h-64 h-auto object-cover border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow duration-200 cursor-pointer"
               loading="lazy"
               fetchpriority="low"
               decoding="async"
@@ -133,4 +133,14 @@ const formatTime = (date: Date | string): string => {
     hour12: false 
   });
 };
-</script> 
+</script>
+
+<style>
+.greeting-card {
+  transition: all 0.2s ease;
+}
+.greeting-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+</style> 

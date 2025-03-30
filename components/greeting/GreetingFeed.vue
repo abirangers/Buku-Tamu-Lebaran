@@ -1,8 +1,8 @@
 <template>
-  <div class="space-y-6 mx-auto" ref="feedContainer">
+  <div class="space-y-4 sm:space-y-6 mx-auto" ref="feedContainer">
     <!-- Loading state -->
     <Transition name="fade" mode="out-in">
-      <div v-if="isLoading && greetings.length === 0" class="text-center py-16 px-4">
+      <div v-if="isLoading && greetings.length === 0" class="text-center py-12 px-4">
         <div class="inline-block p-6 bg-white dark:bg-neutral-800 rounded-xl shadow-sm">
           <UIcon name="i-heroicons-arrow-path" class="h-10 w-10 animate-spin text-primary-500 mx-auto" />
           <p class="mt-4 text-neutral-600 dark:text-neutral-300 font-medium">Memuat ucapan...</p>
@@ -25,7 +25,7 @@
       </div>
       
       <!-- Empty state -->
-      <div v-else-if="!greetings || greetings.length === 0" class="p-10 border border-neutral-200 dark:border-neutral-700 rounded-xl bg-neutral-50 dark:bg-neutral-800 text-center max-w-lg mx-auto shadow-sm">
+      <div v-else-if="!greetings || greetings.length === 0" class="p-8 sm:p-10 border border-neutral-200 dark:border-neutral-700 rounded-xl bg-neutral-50 dark:bg-neutral-800 text-center max-w-lg mx-auto shadow-sm">
         <UIcon name="i-heroicons-chat-bubble-left-ellipsis" class="h-14 w-14 text-neutral-400 mx-auto mb-4" />
         <h3 class="text-lg font-medium text-neutral-700 dark:text-neutral-300 mb-2">Belum ada ucapan</h3>
         <p class="text-neutral-500 dark:text-neutral-400 mb-6">Jadilah yang pertama berbagi ucapan Lebaran dengan keluarga dan teman!</p>
@@ -37,7 +37,7 @@
         <TransitionGroup 
           name="list"
           tag="div"
-          class="space-y-6"
+          class="space-y-4 sm:space-y-6"
         >
           <GreetingCard 
             v-for="greeting in visibleGreetings" 
@@ -49,7 +49,7 @@
         </TransitionGroup>
         
         <!-- "Load More" button with loading state -->
-        <div v-if="hasMoreToLoad" class="mt-8 text-center">
+        <div v-if="hasMoreToLoad" class="mt-6 sm:mt-8 text-center pb-4">
           <UButton
             color="primary"
             variant="soft"

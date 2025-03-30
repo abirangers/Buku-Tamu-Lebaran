@@ -1,5 +1,5 @@
 <template>
-  <div class="greeting-form-container">
+  <div class="greeting-form-container p-1">
     <UCard
       class="shadow-md border-2 border-primary-50 dark:border-primary-950 overflow-hidden"
     >
@@ -18,7 +18,7 @@
       </div>
 
       <UForm
-        class="space-y-6"
+        class="space-y-5 sm:space-y-6"
         :schema="greetingSchema"
         :state="form"
         @submit="submitForm"
@@ -76,17 +76,17 @@
           <div class="space-y-4">
             <div class="flex items-center justify-center w-full">
               <label
-                class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                class="flex flex-col items-center justify-center w-full h-28 sm:h-32 border-2 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
               >
                 <div
-                  class="flex flex-col items-center justify-center pt-5 pb-6"
+                  class="flex flex-col items-center justify-center pt-4 pb-5 sm:py-5 px-4 text-center"
                 >
                   <UIcon
                     name="i-heroicons-photo"
-                    class="w-8 h-8 mb-3 text-neutral-400"
+                    class="w-8 h-8 mb-2 text-neutral-400"
                   />
                   <p
-                    class="mb-2 text-sm text-neutral-500 dark:text-neutral-400"
+                    class="mb-1 text-sm text-neutral-500 dark:text-neutral-400"
                   >
                     <span class="font-semibold">Klik untuk pilih gambar</span>
                     atau seret dan lepas
@@ -110,14 +110,14 @@
             <Transition name="fade" mode="out-in">
               <div v-if="imagePreview">
                 <div
-                  class="w-fit mt-4 p-3 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-neutral-50 dark:bg-neutral-800/50"
+                  class="w-fit mt-3 p-2 sm:p-3 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-neutral-50 dark:bg-neutral-800/50"
                 >
                   <div class="relative group">
                     <div class="transition-opacity duration-200 group-hover:opacity-75">
                       <NuxtImg
                         :src="imagePreview"
                         alt="Pratinjau gambar" 
-                        class="max-h-40 h-auto w-auto rounded-md object-cover"
+                        class="max-h-36 sm:max-h-40 h-auto w-auto rounded-md object-cover"
                       />
                     </div>
                     
@@ -147,7 +147,7 @@
           :loading="isSubmitting"
           :disabled="isSubmitting || isRateLimited"
           icon="i-heroicons-paper-airplane"
-          class="cursor-pointer mt-8 transform hover:translate-y-[-2px] transition-transform"
+          class="cursor-pointer mt-6 sm:mt-8 transform hover:translate-y-[-2px] transition-transform"
         >
           <span v-if="isSubmitting">Mengirim...</span>
           <span v-else-if="isRateLimited">

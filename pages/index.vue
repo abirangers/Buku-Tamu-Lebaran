@@ -2,7 +2,7 @@
   <div>
     <TheHero />
 
-    <div class="py-12 grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+    <div class="py-12 px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 max-w-6xl mx-auto">
       <div class="col-span-1">
         <div class="sticky top-24">
           <h2 class="text-xl font-semibold mb-5 text-neutral-800 dark:text-neutral-200 border-b border-neutral-200 dark:border-neutral-800 pb-2">
