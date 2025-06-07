@@ -1,16 +1,36 @@
 <template>
-  <UCard class="greeting-card p-4 md:p-5">
+  <UCard 
+    :class="[
+      'greeting-card p-4 md:p-5 transition-all duration-300',
+      isCreatorCard ? 'creator-special-card' : ''
+    ]"
+  >
+    <!-- Badge spesial hanya untuk creator -->
+    <div v-if="isCreatorCard" class="creator-badge">
+      <span>Creator</span>
+    </div>
+    
     <div class="flex items-start gap-3 md:gap-4">
       <UAvatar 
         :text="getInitials(greeting.name)" 
-        class="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-200 shrink-0" 
+        :class="[
+          'text-neutral-600 dark:text-neutral-200 shrink-0',
+          isCreatorCard ? 'bg-primary-500 text-white' : 'bg-neutral-200 dark:bg-neutral-700'
+        ]"
         size="md"
       />
       
       <div class="flex-1 min-w-0">
         <div class="flex justify-between items-start">
           <div>
-            <h3 class="font-semibold text-base text-neutral-900 dark:text-neutral-100">{{ greeting.name }}</h3>
+            <h3 
+            :class="[
+              'font-semibold text-base',
+              isCreatorCard ? 'text-primary-600 dark:text-primary-400 flex items-center' : 'text-neutral-900 dark:text-neutral-100'
+            ]">
+              {{ greeting.name }}
+              <UIcon v-if="isCreatorCard" name="i-heroicons-star" class="ml-1 h-4 w-4 text-yellow-500" />
+            </h3>
             <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
               {{ formatDate(greeting.timestamp) }} • {{ formatTime(greeting.timestamp) }}
             </p>
@@ -27,7 +47,10 @@
           />
         </div>
         
-        <div class="mt-4 text-neutral-700 dark:text-neutral-300 whitespace-pre-wrap leading-relaxed">
+        <div :class="[
+          'mt-4 whitespace-pre-wrap leading-relaxed',
+          isCreatorCard ? 'text-neutral-800 dark:text-white' : 'text-neutral-700 dark:text-neutral-300'
+        ]">
           {{ greeting.message }}
         </div>
         
@@ -95,7 +118,7 @@ defineEmits<{
 }>();
 
 // Props
-defineProps<{
+const props = defineProps<{
   greeting: Greeting
 }>();
 
@@ -105,6 +128,12 @@ const imageLoaded = ref(false);
 
 // Gunakan composable auth untuk cek status login
 const { isLoggedIn } = useAuth();
+
+// Cek apakah ini kartu creator
+const isCreatorCard = computed(() => {
+  return props.greeting.name === 'Ahmad Aby Ayyasi' || 
+         props.greeting.id === '6662bec2-fc92-4448-b16d-013bac23fada';
+});
 
 // Utilitas untuk mendapatkan inisial dari nama
 const getInitials = (name: string): string => {
@@ -154,5 +183,45 @@ const formatTime = (date: Date | string): string => {
 .greeting-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Style khusus untuk card creator */
+.creator-special-card {
+  position: relative;
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #3b82f6, #10b981, #3b82f6) 1;
+  background-image: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 70%);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3), 0 8px 10px -6px rgba(59, 130, 246, 0.2);
+}
+
+.creator-special-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.4), 0 10px 10px -5px rgba(59, 130, 246, 0.3);
+}
+
+.creator-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* Animasi pulse subtle untuk card creator */
+@keyframes subtle-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.creator-special-card {
+  animation: subtle-pulse 2s infinite;
 }
 </style> 
